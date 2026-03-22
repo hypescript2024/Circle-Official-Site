@@ -367,7 +367,8 @@ h2 {
 
 .member-grid,
 .works-grid,
-.sns-grid {
+.sns-grid,
+.event-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -394,6 +395,18 @@ h2 {
   padding: 24px;
 }
 
+.work-card-link {
+  display: block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.work-card-link:hover,
+.work-card-link:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(47, 157, 144, 0.32);
+  box-shadow: 0 20px 42px rgba(30, 73, 84, 0.16);
+}
+
 .work-tag {
   margin-bottom: 16px;
 }
@@ -409,6 +422,32 @@ h2 {
   margin: 16px 4px 0;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.event-card {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.event-date {
+  margin: 0 0 10px;
+  color: var(--accent-strong);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.event-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+}
+
+.event-note {
+  margin: 0;
+  color: var(--muted);
 }
 
 .member-link {
@@ -479,7 +518,8 @@ h2 {
   .hero,
   .member-grid,
   .works-grid,
-  .sns-grid {
+  .sns-grid,
+  .event-list {
     grid-template-columns: 1fr;
   }
 
@@ -560,6 +600,7 @@ h2 {
   .hero-card,
   .member-card,
   .work-card,
+  .event-card,
   .join-panel,
   .sns-card {
     padding: 20px;
