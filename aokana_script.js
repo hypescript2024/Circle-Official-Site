@@ -12,9 +12,9 @@ const AOKANAYOU_INTRO_CONFIG = {
 };
 
 const memoryLines = [
-  "今日、仏教は受難の時代です。しかし君ならこの闇をも切り払ってくれると、私は確信しています。",
+  "今日、仏教は受難の時代です\nしかし君ならこの闇をも切り払ってくれると、私は確信しています。",
   "おねがい。──あたしを、助けてください",
-  "こいつはまさに鬼の武器だ。ぎらついた肌の屈強な益荒男が息を切らし！　汗を飛ばし！　雄ォ叫びくぉ上げながら揮う巨大包丁ッ！",
+  "こいつはまさに鬼の武器だ。ぎらついた肌の屈強な益荒男が息を切らし！\n汗を飛ばし！　雄ォ叫びを上げながら揮う巨大包丁ッ！",
   "いい旅をな。",
   "あの人は、お前に託そうとしているのかもしれねえな",
   "それでいつか、蒼き彼方の地でまた逢おう"
@@ -105,7 +105,7 @@ async function playMemorySequence() {
 
 function showMemoryLine(text, position, duration) {
   memoryLine.classList.remove("is-visible");
-  memoryLine.textContent = text;
+  memoryLine.innerHTML = formatMemoryLine(text);
   memoryLine.style.setProperty("--line-left", position.left);
   memoryLine.style.setProperty("--line-top", position.top);
   memoryLine.style.setProperty("--line-duration", `${duration}ms`);
@@ -130,6 +130,26 @@ function fitCurrentMemoryLine() {
   memoryLine.style.setProperty("--line-scale", scale.toFixed(3));
   memoryLine.style.setProperty("--line-scale-start", (scale * 0.96).toFixed(3));
   memoryLine.style.setProperty("--line-scale-end", (scale * 1.04).toFixed(3));
+}
+
+/* 配列内で明示した改行だけを <br> として反映します。 */
+function formatMemoryLine(text) {
+  return text
+    .split("\n")
+    .map((line) => escapeHtml(line))
+    .join("<br>");
+}
+
+function escapeHtml(text) {
+  const htmlEscapes = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  };
+
+  return text.replace(/[&<>"']/g, (character) => htmlEscapes[character]);
 }
 
 function getLineDuration(text) {
