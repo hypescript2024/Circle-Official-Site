@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>同人サークルHypeScript公式HP</title>
+  <title>HypeScript | 小説・創作同人サークル公式サイト</title>
   <meta
     name="description"
     content="サークル紹介、メンバー紹介、制作物一覧、加入案内、SNS情報を掲載した公式ホームページです。"
@@ -15,6 +15,8 @@
     rel="stylesheet"
   >
   <link rel="stylesheet" href="styles.css">
+  <!-- redmoon.css: test visual effect. Remove this <link> to disable the red moon overlay. -->
+  <link rel="stylesheet" href="redmoon.css">
 </head>
 <body>
   <div class="site-shell">
@@ -137,9 +139,18 @@
           </a>
           <article class="work-card reveal">
             <span class="work-tag">同人誌</span>
-            <h3>蜘蛛と強盗 by牛木ロム</h3>
-            <p>現在、鋭意制作中です。完成次第、更新する予定です。</p>
+            <h3>蜘蛛と強盗(ミディアム版) by牛木ロム</h3>
+            <p>未完成品を文学フリマ東京42にて頒布。完成品は文学フリマ東京43にて頒布予定</p>
           </article>
+          <a
+            class="work-card work-card-link reveal"
+            href="yoruaka_intro.html"
+            aria-label="夜の赤月の紹介ページを開く"
+          >
+            <span class="work-tag">ネット連載小説</span>
+            <h3>夜の赤月～Today Once More～ by狛井式</h3>
+            <p>未定</p>
+          </a>
         </div>
         <p class="works-note reveal">試し読みが公開されている場合、作品をクリックすると【試し読み】ページに遷移します。</p>
       </section>
@@ -148,13 +159,18 @@
         <div class="section-heading reveal">
           <p class="eyebrow">Events</p>
           <h2>サークル参加イベント一覧</h2>
-          <p>参加予定のイベント情報をこちらにまとめていきます。</p>
+          <p>参加予定、もしくは参加したのイベント情報をこちらにまとめていきます。</p>
         </div>
         <div class="event-list reveal">
           <article class="event-card">
             <p class="event-date">2026年5月4日(月)</p>
             <h3>文学フリマ42</h3>
-            <p class="event-note">新刊予定2冊<br>狛井式：『蒼き彼方への旅(上)』<br>牛木ロム：『蜘蛛と強盗』</p>
+            <p class="event-note">新刊2冊<br>狛井式：『蒼き彼方への旅(上)』<br>牛木ロム：『蜘蛛と強盗(ミディアム版)』</p>
+          </article>
+          <article class="event-card">
+            <p class="event-date">2026年11月8日(日)</p>
+            <h3>文学フリマ43</h3>
+            <p class="event-note">新刊2冊、既刊1冊予定<br>狛井式：『蒼き彼方への旅(上・下)』<br>牛木ロム：『蜘蛛と強盗』</p>
           </article>
         </div>
       </section>
@@ -212,5 +228,7 @@
   </div>
 
   <script src="script.js"></script>
+  <!-- redmoon.js: test visual effect. Remove this <script> to disable the red moon overlay. -->
+  <script src="redmoon.js"></script>
 </body>
 </html>

@@ -372,6 +372,10 @@ h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.event-list {
+  gap: 24px;
+}
+
 .member-card {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -431,6 +435,12 @@ h2 {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+  /* 視認性向上のためイベント項目間に余白を追加 */
+  margin-bottom: 18px;
+}
+
+.event-list .event-card:last-child {
+  margin-bottom: 0;
 }
 
 .event-date {

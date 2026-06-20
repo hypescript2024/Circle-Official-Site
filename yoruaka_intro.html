@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intro</title>
+  <style>
+    /* 全体のスタイル */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* 画面全体の高さ */
+    }
+
+    /* 中央揃え */
+    #textContainer {
+      text-align: center;
+      line-height: 2rem; /* 行間を調整 */
+    }
+
+    /* アニメーション用 */
+    .floating-text {
+      opacity: 0;
+      font-size: 1.5rem; /* 文字サイズを小さく */
+      animation: fadeIn 2s ease-in forwards;
+      margin: 0; /* 行間はline-heightで調整 */
+    }
+
+    .highlighted {
+      position: relative;
+      font-size: 2rem; /* 「赤月」の部分を大きく */
+      color: red; /* 赤くする */
+      font-weight: bold;
+      animation: fadeInHighlight 2s ease-in forwards;
+    }
+
+	/* 振り仮名 */
+	.highlighted::before {
+	  content: "よるのあかつき"; /* 振り仮名 */
+	  position: absolute;
+	  top: -1.5rem; /* メインテキストの上に配置 */
+	  left: 55%; /* 親要素の中央に基準 */
+	  transform: translateX(-55%); /* 少し左にずらす */
+	  font-size: 0.8rem; /* 振り仮名のサイズ */
+	  color: black; /* 振り仮名の色 */
+	}
+
+
+    /* アニメーション */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px); /* 少し下から上がる */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInHighlight {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* アニメーション用クラス */
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s forwards;
+    }
+
+	    /* スキップボタンのスタイル */
+	    #skipButton {
+	      position: fixed;
+	      bottom: 20px;
+	      right: 20px;
+	      padding: 5px 10px; /* コンパクトに調整 */
+	      background-color: #ddd; /* 淡いグレー */
+	      color: #333; /* ダークグレーの文字色 */
+	      border: 1px solid #ccc; /* 薄い境界線 */
+	      border-radius: 3px; /* 少し丸みを持たせる */
+	      cursor: pointer;
+	      font-size: 0.8rem; /* フォントサイズを小さく */
+	      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 控えめな影 */
+	    }
+
+	    #skipButton:hover {
+	      background-color: #bbb; /* 少し濃いグレー */
+	    }
+
+  </style>
+</head>
+<body>
+  <div id="textContainer"></div>
+  <button id="skipButton">ホームへ</button>
+
+  <script>
+    class ScreenController {
+      constructor() {
+        this.messages = [
+          { text: "寝たら嫌なことは忘れる。", delay: 1000 },
+          { text: "そんな言葉があるでしょ？", delay: 3500 },
+          { text: "これはね、本当にその通りなんだ。", delay: 5500 },
+          { text: "'科学的に？'", delay: 7500 },
+          { text: "ううん。理屈はもっと単純。", delay: 9500 },
+          { text: "──≪夜の赤月≫", delay: 11500, highlight: true },
+          { text: "キミたちの嫌なことを、忘れさせてくれる組織の名前だよ。", delay: 13500 }
+        ];
+        this.textContainer = document.getElementById("textContainer");
+        this.skipButton = document.getElementById("skipButton");
+      }
+
+      start() {
+        // TODO: noteのURLに変更するが、まだないので後回しにすわす。とりまnoteトップに。
+        const NEXT_URL = "https://note.com/hypescript";
+
+        this.showMessages(() => {
+          setTimeout(() => {
+            location.href = NEXT_URL; // note へ遷移
+          }, 6000); // 5秒後に遷移
+        });
+
+        // スキップボタンのイベントを設定
+        this.skipButton.addEventListener("click", () => {
+          location.href = NEXT_URL;
+        });
+      }
+
+      showMessages(callback) {
+        this.messages.forEach((message, index) => {
+          setTimeout(() => {
+            const span = document.createElement("div");
+            span.textContent = message.text;
+
+            if (message.highlight) {
+              span.className = "floating-text highlighted";
+              // 前後に空白行を挿入
+              const beforeSpace = document.createElement("div");
+              const afterSpace = document.createElement("div");
+              beforeSpace.style.height = "1.5rem";
+              afterSpace.style.height = "1.5rem";
+              this.textContainer.appendChild(beforeSpace);
+              this.textContainer.appendChild(span);
+              this.textContainer.appendChild(afterSpace);
+            } else {
+              span.className = "floating-text";
+              this.textContainer.appendChild(span);
+            }
+
+            // 「忘れさせて」を「殺して」に変更する処理
+            if (message.text.includes("忘れさせて")) {
+              setTimeout(() => {
+                // テキストを分割;
+                const parts = message.text.split("忘れさせて");
+                span.innerHTML = `${parts[0]}<span class="fade-out">忘れさせて</span>${parts[1]}`;
+
+                // フェードアウト処理
+                const fadeOutSpan = span.querySelector(".fade-out");
+                setTimeout(() => {
+                  fadeOutSpan.classList.remove("fade-out");
+                  fadeOutSpan.classList.add("fade-in");
+                  fadeOutSpan.textContent = "殺して";
+                }, 1000); // フェードアウト後1秒で置き換え
+              }, 3000); // 表示後3秒で処理開始
+            }
+
+            if (index === this.messages.length - 1) {
+              callback();
+            }
+          }, message.delay);
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const controller = new ScreenController();
+      controller.start();
+    });
+  </script>
+</body>
+</html>

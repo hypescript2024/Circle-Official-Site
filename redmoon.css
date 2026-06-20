@@ -1,0 +1,125 @@
+/* redmoon.css
+   Test implementation: red moon overlay effect with title.
+   To remove: delete this file and the <link> in index.html.
+*/
+
+.redmoon-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  pointer-events: none;
+  z-index: 40;
+  transition: background 600ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redmoon-overlay.active {
+  background: #000000;
+  pointer-events: auto;
+}
+
+/* Container to hold moon and title together, positioned slightly above center */
+.redmoon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  /* Position ~12% above vertical center */
+  transform: translateY(-60px);
+}
+
+.redmoon-moon {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #ff7f7f 0%, #d92b2b 55%, #8b0000 100%);
+  box-shadow: 0 15px 80px rgba(217,43,43,0.45), inset 0 -10px 30px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: scale(0.8) translateY(12px);
+  filter: blur(0.6px);
+}
+
+/* Transition only when active (fading in) — no transition when exiting */
+.redmoon-overlay.active .redmoon-moon {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+/* Title styling: now an image instead of text */
+.redmoon-title {
+  margin: 0;
+  max-width: 800px;
+  width: auto;
+  height: auto;
+  max-height: 280px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms ease 0ms, transform 700ms ease 0ms;
+  display: block;
+  object-fit: contain;
+}
+
+.redmoon-title.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtitle styling: smaller, less prominent than title */
+.redmoon-subtitle {
+  margin: 0;
+  font-family: "Noto Serif JP", "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #c0c0c0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  text-shadow: 
+    0 0 8px rgba(217,43,43,0.3),
+    0 2px 4px rgba(0,0,0,0.7);
+  white-space: nowrap;
+}
+
+.redmoon-subtitle.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 760px) {
+  .redmoon-moon {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .redmoon-title {
+    max-width: 500px;
+    max-height: 160px;
+  }
+  
+  .redmoon-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .redmoon-container {
+    gap: 20px;
+  }
+}
+
+/* If an image is used, hide the gradient background and ensure the img fits */
+.redmoon-moon.has-img {
+  background: none;
+  box-shadow: none;
+}
+
+.redmoon-moon.has-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+}
