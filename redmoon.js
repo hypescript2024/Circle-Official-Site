@@ -55,7 +55,7 @@
       // Create subtitle element
       const subtitle = document.createElement('p');
       subtitle.className = 'redmoon-subtitle';
-      subtitle.textContent = '新規連載開始予定！ 詳細は制作物一覧から！';
+      subtitle.textContent = '新規連載開始予定！ 詳細は制作物一覧からどうぞ！';
 
       container.appendChild(moon);
       container.appendChild(title);
