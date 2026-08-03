@@ -149,7 +149,7 @@
   };
 
   const updatePostLink = () => {
-    const shareUrl = "https://hypescript2024.github.io/Circle-Official-Site/yoruaka_menu.html";
+    const shareUrl = "https://hypescript2024.github.io/Circle-Official-Site/yoruaka_clear_share.html";
     const shareLines = ["『夜の赤月』ミニゲームクリア！", "", "感想は…", ""];
 
     if (shareUrl) shareLines.push(`ミニゲームはこちら→${shareUrl}`, "");

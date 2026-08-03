@@ -618,7 +618,9 @@ button {
   border-radius: 6px;
   color: #fff;
   background: var(--red);
-  box-shadow: 0 8px 0 #74131d, 0 12px 28px rgba(0, 0, 0, 0.36);
+  background-clip: padding-box;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.46);
   cursor: pointer;
   touch-action: manipulation;
 }
@@ -635,7 +637,58 @@ button {
 
 .osog-button:active:not(:disabled) {
   bottom: max(12px, calc(env(safe-area-inset-bottom) - 4px));
-  box-shadow: 0 4px 0 #74131d, 0 8px 18px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.42);
+}
+
+/* Clear share page */
+.clear-share-page {
+  color: #fff;
+  background: #08080b;
+}
+
+.clear-share-screen {
+  width: min(100%, 760px);
+  min-height: 100svh;
+  margin: 0 auto;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 18px;
+  padding: max(30px, env(safe-area-inset-top)) 22px max(30px, env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+.clear-share-screen h1 {
+  margin: 0;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(1.65rem, 5vw, 2.5rem);
+}
+
+.clear-share-image {
+  width: min(100%, 680px);
+  max-height: 56svh;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.clear-share-copy {
+  max-width: 34em;
+  margin: 0;
+  color: #e5e2e2;
+  line-height: 1.8;
+}
+
+.clear-share-actions {
+  width: min(100%, 420px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .clear-share-actions {
+    grid-template-columns: 1fr;
+  }
 }
 
 .osog-button:disabled {
