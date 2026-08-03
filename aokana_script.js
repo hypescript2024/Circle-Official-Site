@@ -1,7 +1,7 @@
 /*
   aokanayou intro effect
-  本体サイトへ組み込む時は、制作物一覧の試し読みリンクを ./aokana.html に変更してください。
-  Noteの遷移先だけを変えたい場合は、下の noteUrl を差し替えます。
+  本体サイトへ組み込む時は、制作物一覧の試し読みリンクを ./aokana.html に変更。
+  Noteの遷移先だけを変えたい場合は、下の noteUrl を差し替え。
 */
 const AOKANAYOU_INTRO_CONFIG = {
   noteUrl: "https://note.com/hypescript/n/n6ca42201d86a",

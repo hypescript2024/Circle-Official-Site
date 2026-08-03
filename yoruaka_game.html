@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="赤い月を掃除して元の姿に戻すミニゲーム！">
+  <title>月のお掃除 | 夜の赤月</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="yoruaka_game.css?v=game-2">
+</head>
+<body class="yoruaka-body play-page">
+  <main class="play-screen" id="playScreen">
+    <header class="play-header">
+      <div>
+        <p class="screen-kicker">Moon Cleaning</p>
+        <h1>お月様をピッカピカに！</h1>
+      </div>
+      <a class="close-game" href="yoruaka_menu.html" aria-label="ゲームを終了してメニューへ戻る"><span aria-hidden="true">×</span></a>
+    </header>
+
+    <section class="status-bar" aria-label="ゲーム状況">
+      <p><span>チャンス</span><strong id="chanceCount">7</strong></p>
+      <p><span>ピカピカ</span><strong><b id="cleanCount">0</b>/5</strong></p>
+    </section>
+
+    <section class="game-stage" id="gameStage" aria-label="月のお掃除ゲーム">
+      <div class="stars" aria-hidden="true"></div>
+
+      <div class="moon-wrap" id="moonWrap">
+        <img class="moon-layer moon-layer--clean" src="images/moon(nontitle).png" alt="元の色のお月様">
+        <img class="moon-layer moon-dirt moon-dirt--1" src="images/moon(nontitle).png" alt="">
+        <img class="moon-layer moon-dirt moon-dirt--2" src="images/moon(nontitle).png" alt="">
+        <img class="moon-layer moon-dirt moon-dirt--3" src="images/moon(nontitle).png" alt="">
+        <img class="moon-layer moon-dirt moon-dirt--4" src="images/moon(nontitle).png" alt="">
+        <img class="moon-layer moon-dirt moon-dirt--5" src="images/moon(nontitle).png" alt="">
+        <div class="moon-gloss" aria-hidden="true"></div>
+      </div>
+
+      <p class="game-feedback" id="gameFeedback" aria-live="polite">タイミングを見てね！</p>
+
+      <div class="cleaner-lane" aria-label="左右に動くお掃除屋さん">
+        <button class="cleaner-mover" id="cleanerMover" type="button" aria-label="お掃除屋さんを発進させる">
+          <span class="cleaner-launcher" id="cleaner">
+            <img src="images/zoukin_boy.png" alt="お掃除屋さん" class="cleaner-art">
+            <span class="cleaner-hit-area" aria-hidden="true"></span>
+            <span class="cleaner-speech">がんばルビィ</span>
+          </span>
+        </button>
+      </div>
+
+      <button class="osog-button" id="osogButton" type="button" disabled>
+        <span>《OSOG》</span>
+        <small>タップでお掃除！</small>
+      </button>
+
+      <button class="hero-button" id="heroButton" type="button" hidden disabled>
+        <span>救いのヒーロー</span>
+        <span>召喚</span>
+      </button>
+    </section>
+
+    <div class="hero-cutin" id="heroCutin" hidden aria-hidden="true">
+      <div class="hero-cutin-frame">
+        <img src="images/senna_cutin.jpg" alt="" class="hero-cutin-image">
+      </div>
+    </div>
+
+    <div class="countdown-overlay" id="countdownOverlay" aria-live="assertive">
+      <p id="countdownText">3</p>
+    </div>
+
+    <section class="result-overlay" id="resultOverlay" hidden aria-live="assertive">
+      <div class="confetti" id="confetti" aria-hidden="true"></div>
+      <div class="result-panel" id="resultPanel">
+        <p class="result-kicker" id="resultKicker">Moon Cleaned!</p>
+        <h2 id="resultTitle">CONGRATULATION！！</h2>
+        <p id="resultMessage">お月様がピッカピカになったよ！</p>
+        <div class="result-actions">
+          <a class="game-button game-button--primary" href="yoruaka_intro.html">《本編へ》</a>
+          <a class="game-button game-button--ghost" href="yoruaka_game_explanation.html">《もう一度プレイ》</a>
+        </div>
+      </div>
+
+      <div class="reward-modal" id="rewardModal" hidden role="dialog" aria-modal="true" aria-labelledby="rewardTitle">
+        <div class="reward-modal-shell">
+          <button class="reward-modal-close" id="rewardModalClose" type="button" aria-label="ゲームクリア画面を閉じる" title="閉じる">×</button>
+          <p class="result-kicker">Game Clear!</p>
+          <h2 id="rewardTitle">ゲームクリア！</h2>
+          <img class="reward-image" src="images/クリア画像.png" alt="元の色に戻った満月と夜の赤月のロゴが入ったクリア画像">
+          <div class="reward-modal-actions">
+            <a class="game-button game-button--post" id="tweetButton" href="https://x.com/intent/tweet" target="_blank" rel="noopener noreferrer">ポストする</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="yoruaka_game.js?v=game-1"></script>
+</body>
+</html>

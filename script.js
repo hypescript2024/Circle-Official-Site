@@ -3,6 +3,16 @@ const siteNav = document.querySelector(".site-nav");
 const navLinks = [...document.querySelectorAll(".site-nav a")];
 const revealItems = document.querySelectorAll(".reveal");
 const sections = document.querySelectorAll("main section[id]");
+const workChoiceTrigger = document.querySelector(".work-choice-trigger");
+const workChoiceActions = document.querySelector(".work-choice-actions");
+
+if (workChoiceTrigger && workChoiceActions) {
+  workChoiceTrigger.addEventListener("click", () => {
+    const expanded = workChoiceTrigger.getAttribute("aria-expanded") === "true";
+    workChoiceTrigger.setAttribute("aria-expanded", String(!expanded));
+    workChoiceActions.hidden = expanded;
+  });
+}
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {

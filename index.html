@@ -15,9 +15,8 @@
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
-  <link rel="stylesheet" href="styles.css">
-  <!-- redmoon.css: test visual effect. Remove this <link> to disable the red moon overlay. -->
-  <link rel="stylesheet" href="redmoon.css">
+  <link rel="stylesheet" href="styles.css?v=game-1">
+  <link rel="stylesheet" href="video_modal.css">
 </head>
 <body>
   <div class="site-shell">
@@ -152,16 +151,23 @@
             <h3>ブラック・デス by 狛井式</h3>
             <p>荒野を流離う一人の男が、闇夜に死神との邂逅を果たす。死神は、男に尋ねた。<br>──あなたは何故、旅を続けるのですか？　</p>
           </a>
-          <a
-            class="work-card work-card-link reveal"
-            href="yoruaka_intro.html"
-            aria-label="夜の赤月の紹介ページを開く"
-          >
-            <span class="work-tag">連載小説(WEB)</span>
-            <h3>夜の赤月─Today Once More─ by狛井式</h3>
-            <p>平凡な日々を送る女子高生・落窪千奈は、赤い月の浮かぶ世界に迷い込む。
+          <article class="work-card work-card-choice reveal" id="yoruaka-work-card">
+            <button
+              class="work-choice-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="yoruaka-work-choice"
+            >
+              <span class="work-tag">連載小説(WEB)</span>
+              <h3>夜の赤月─Today Once More─ by狛井式</h3>
+              <p>平凡な日々を送る女子高生・落窪千奈は、赤い月の浮かぶ世界に迷い込む。
 これから始まるのは、もう一つの今日。<br>──そこは、彼女の知らないもう一つの［現実］だった。</p>
-          </a>
+            </button>
+            <div class="work-choice-actions" id="yoruaka-work-choice" hidden>
+              <a class="button button-secondary" href="yoruaka_intro.html">《本編へ》</a>
+              <a class="button button-primary" href="yoruaka_menu.html">《ミニゲームへ》</a>
+            </div>
+          </article>
         </div>
         <p class="works-note reveal">試し読みや本編が公開されている場合、作品をクリックすると該当ページに遷移します。</p>
       </section>
@@ -238,8 +244,7 @@
     </footer>
   </div>
 
-  <script src="script.js"></script>
-  <!-- redmoon.js: test visual effect. Remove this <script> to disable the red moon overlay. -->
-  <script src="redmoon.js"></script>
+  <script src="script.js?v=game-1"></script>
+  <script src="video_modal.js"></script>
 </body>
 </html>

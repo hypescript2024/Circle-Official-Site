@@ -1,6 +1,6 @@
 /*
   blackdeath intro sequence
-  URLを差し替える場合は BLACKDEATH_CONFIG.noteUrl だけを変更してください。
+  URLを差し替える場合は BLACKDEATH_CONFIG.noteUrl だけを変更。
 */
 const BLACKDEATH_CONFIG = {
   noteUrl: "https://note.com/hypescript/n/nc7f00186f84d",

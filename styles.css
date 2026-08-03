@@ -411,6 +411,48 @@ h2 {
   box-shadow: 0 20px 42px rgba(30, 73, 84, 0.16);
 }
 
+.work-card-choice {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.work-card-choice:focus-within {
+  border-color: rgba(47, 157, 144, 0.32);
+  box-shadow: 0 20px 42px rgba(30, 73, 84, 0.16);
+}
+
+.work-choice-trigger {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.work-choice-trigger p {
+  margin-bottom: 0;
+}
+
+.work-choice-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.work-choice-actions[hidden] {
+  display: none;
+}
+
+.work-choice-actions .button {
+  min-height: 46px;
+  padding: 0 14px;
+}
+
 .work-tag {
   margin-bottom: 16px;
 }
@@ -628,6 +670,10 @@ h2 {
   .work-card h3 {
     font-size: 1.05rem;
     line-height: 1.45;
+  }
+
+  .work-choice-actions {
+    grid-template-columns: 1fr;
   }
 
   .works-note {
