@@ -2,7 +2,8 @@
   const MAX_ATTEMPTS = 7;
   const TARGET_COUNT = 5;
   const MOVE_SPEED = 27;
-  const FINAL_CHANCE_SPEED_MULTIPLIER = 12;
+  const PROGRESSIVE_SPEED_MULTIPLIERS = [1, 2, 3, 5];
+  const FINAL_CHANCE_SPEED_MULTIPLIER = 30;
   const FINAL_FIRST_LINE_DURATION = 3200;
   const FINAL_SECOND_LINE_DURATION = 1800;
   const HERO_CUTIN_ENTRY_DURATION = 260;
@@ -71,10 +72,17 @@
     lastFrame = timestamp;
 
     if (gameState === "playing" && !launchLocked) {
-      const remainingTargets = TARGET_COUNT - cleaned.filter(Boolean).length;
-      const currentMoveSpeed = !heroUsed && finalCleanActive && remainingTargets === 1
-        ? MOVE_SPEED * FINAL_CHANCE_SPEED_MULTIPLIER
-        : MOVE_SPEED;
+      const cleanTotal = cleaned.filter(Boolean).length;
+      const remainingTargets = TARGET_COUNT - cleanTotal;
+      const progressiveMultiplier = PROGRESSIVE_SPEED_MULTIPLIERS[
+        Math.min(cleanTotal, PROGRESSIVE_SPEED_MULTIPLIERS.length - 1)
+      ];
+      const speedMultiplier = heroUsed
+        ? 1
+        : finalCleanActive && remainingTargets === 1
+          ? FINAL_CHANCE_SPEED_MULTIPLIER
+          : progressiveMultiplier;
+      const currentMoveSpeed = MOVE_SPEED * speedMultiplier;
       cleanerX += direction * currentMoveSpeed * elapsed;
       if (cleanerX >= 94) {
         cleanerX = 94;
@@ -192,7 +200,10 @@
     osogButton.disabled = true;
     const aim = measureAim();
     const launchDistance = prepareLaunchDistance();
-    setFeedback("おそうじ、いってらっしゃい！");
+    const finalSpeedActive = finalCleanActive && !heroUsed;
+    setFeedback(finalSpeedActive
+      ? "そんな寝ぼけた分身が通用するか！"
+      : "おそうじ、いってらっしゃい！");
     cleaner.classList.add("is-running");
     cleaner.style.transition = "none";
     cleaner.style.transform = "translateY(0) scale(1)";
@@ -216,7 +227,10 @@
         }
         setFeedback("ピカッ！　きれいになったよ！", "hit");
       } else {
-        setFeedback("ビールでも飲んでリラックスしな", "miss");
+        const missMessage = finalSpeedActive
+          ? "分身はこうやるんだああ！"
+          : "ビールでも飲んでリラックスしな";
+        setFeedback(missMessage, "miss");
       }
       updateStatus();
     }, LAUNCH_DURATION * 0.48);
