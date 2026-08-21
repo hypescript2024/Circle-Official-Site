@@ -142,6 +142,13 @@ button {
   text-align: center;
 }
 
+.landing-logo {
+  display: block;
+  width: min(88vw, 520px);
+  height: auto;
+  margin: 0 auto;
+}
+
 .landing-kicker,
 .screen-kicker,
 .result-kicker {
