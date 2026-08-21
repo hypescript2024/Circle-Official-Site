@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ece8df">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="夜の赤月 -Today Once More- デジタルカードゲーム">
+  <title>夜の赤月 -Today Once More-</title>
+  <link rel="icon" href="../images/card/play_mat/yoruaka_logo.png" type="image/png">
+    <link rel="stylesheet" href="game_hype.css?v=20260821-prod3">
+  <link rel="stylesheet" href="battle.css?v=20260821-prod1">
+</head>
+<body>
+  <div class="desktop-backdrop" aria-hidden="true">
+    <span>YORU NO AKATSUKI</span>
+    <span>TODAY ONCE MORE</span>
+  </div>
+
+  <main class="game-shell" id="game-shell" aria-live="polite">
+    <div class="paper-grain" aria-hidden="true"></div>
+
+    <section class="screen portal-splash is-active" data-screen="portal-splash" aria-labelledby="portal-splash-heading">
+      <h1 id="portal-splash-heading" class="visually-hidden">HypeScript</h1>
+      <img src="../images/card/play_mat/circle_logo.png" alt="HypeScript">
+    </section>
+
+    <section class="screen game-select-screen" data-screen="game-select" aria-labelledby="game-select-heading" hidden>
+      <header class="game-select-header">
+        <p class="game-select-kicker">SELECT A GAME</p>
+        <h2 id="game-select-heading">プレイしたいゲームを<br>選択してください</h2>
+        <a class="game-select-back" href="../index.html">戻る</a>
+      </header>
+      <div class="game-choice-grid">
+        <button class="game-choice game-choice-cleaning" type="button" data-entry-game="cleaning" aria-label="お掃除ゲームを選択">
+          <video muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="../images/card/video/moon_clean_web.mp4" type="video/mp4">
+          </video>
+          <span class="game-choice-shade" aria-hidden="true"></span>
+          <span class="game-choice-number">01</span>
+          <span class="game-choice-label"><small>MOON CLEANING</small><strong>お掃除ゲーム</strong></span>
+        </button>
+        <button class="game-choice game-choice-card" type="button" data-entry-game="card" aria-label="デジタルカードゲームを選択">
+          <video muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="../images/card/video/degital_cardgame_web.mp4" type="video/mp4">
+          </video>
+          <span class="game-choice-shade" aria-hidden="true"></span>
+          <span class="game-choice-number">02</span>
+          <span class="game-choice-label"><small>DIGITAL CARD GAME</small><strong>カードゲーム</strong></span>
+        </button>
+      </div>
+      <span class="game-choice-divider" aria-hidden="true"></span>
+    </section>
+
+    <section class="screen notice-screen" data-screen="notice" aria-labelledby="notice-heading" hidden>
+      <article class="notice-card">
+        <div class="notice-mark" aria-hidden="true"><span>!</span></div>
+        <h2 id="notice-heading">NOTICE</h2>
+        <div class="notice-copy">
+          <p>このゲームには、小説『夜の赤月 -Today Once More-』に登場するキャラクターが一部登場します。</p>
+          <p>ただし、本編の物語とは直接関係のない、独立したゲーム作品です。あと、音が出ます。</p>
+          <p>また、本作に登場する人物・団体・名称等はすべてフィクションです。実在する人物、団体、組織等とは一切関係ありません。</p>
+          <p>ゲーム、また小説本編は完全無料でお楽しみいただけます。</p>
+          <p>ゲームをお楽しみいただいた後は、ぜひ小説『夜の赤月 -Today Once More-』もお読みください。</p>
+        </div>
+        <p class="notice-skip">画面をタップすると先へ進みます</p>
+      </article>
+    </section>
+
+    <section class="screen title-screen" data-screen="title" aria-labelledby="title-heading" hidden>
+      <div class="title-index" aria-hidden="true"><span>HypeScript</span></div>
+      <p class="device-note"> ※スマートフォンでのプレイを推奨しています</p>
+
+      <div class="moon-composition" aria-hidden="true">
+        <svg viewBox="0 0 420 420" role="presentation">
+          <defs>
+            <radialGradient id="moonCore" cx="35%" cy="28%" r="75%">
+              <stop offset="0" stop-color="#ff5b61"/><stop offset=".38" stop-color="#df2030"/>
+              <stop offset=".78" stop-color="#96101e"/><stop offset="1" stop-color="#49040d"/>
+            </radialGradient>
+            <filter id="moonTexture" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency=".018 .11" numOctaves="3" seed="18" result="noise"/>
+              <feColorMatrix in="noise" type="saturate" values="0" result="grayNoise"/>
+              <feComposite in="grayNoise" in2="SourceAlpha" operator="in" result="maskedNoise"/>
+              <feBlend in="SourceGraphic" in2="maskedNoise" mode="soft-light"/>
+            </filter>
+            <clipPath id="moonClip"><circle cx="210" cy="210" r="144"/></clipPath>
+          </defs>
+          <g class="moon-rings"><circle cx="210" cy="210" r="184"/><circle cx="210" cy="210" r="173"/></g>
+          <circle class="moon-disc" cx="210" cy="210" r="144" fill="url(#moonCore)" filter="url(#moonTexture)"/>
+          <g clip-path="url(#moonClip)" class="moon-cuts">
+            <path d="M40 148 L390 87 L390 112 L40 174 Z"/><path d="M13 283 L417 196 L417 223 L13 309 Z"/>
+            <path d="M89 353 L360 299 L360 312 L89 368 Z"/>
+          </g>
+          <g class="moon-orbits"><path d="M31 227 C76 54 315 2 401 172"/><path d="M20 256 C72 384 314 439 405 278"/></g>
+        </svg>
+      </div>
+
+      <header class="title-lockup">
+        <p class="title-overline">DIGITAL CARD GAME</p>
+        <h1 id="title-heading" class="visually-hidden">夜の赤月 -Today Once More-</h1>
+        <img class="title-logo" src="../images/card/title_logo/dawn_taitle_logo3.png" alt="夜の赤月 -Today Once More-" width="3315" height="1151">
+      </header>
+
+      <nav class="title-actions" aria-label="タイトルメニュー">
+        <button class="slash-button slash-button-dark" type="button" data-action="start"><span>GAME START</span></button>
+        <div class="title-sub-actions">
+          <button class="text-link credit-link" type="button" data-action="credit">CREDIT</button>
+          <button class="text-link sound-toggle" type="button" data-sound-toggle aria-pressed="true">SOUND ON</button>
+          <button class="text-link title-game-select-link" type="button" data-go="game-select">ゲーム選択へ戻る</button>
+        </div>
+      </nav>
+      <p class="title-footer">© 2026 HypeScript. All Rights Reserved.</p>
+    </section>
+
+    <section class="screen guide-screen" data-screen="guide" aria-labelledby="guide-heading" hidden>
+      <header class="screen-header">
+        <button class="icon-button" type="button" data-go="title" aria-label="タイトルへ戻る">←</button>
+        <p><span>00</span> HOW TO PLAY</p>
+        <span class="header-rule" aria-hidden="true"></span>
+      </header>
+      <div class="guide-hero">
+        <p class="eyebrow">RULES, IN MOTION.</p>
+        <h2 id="guide-heading">チュートリアル動画</h2>
+        <p class="guide-lead">NPC同士の実演が自動で流れます。途中で進む場合は「対戦相手を選ぶ」を押してください。</p>
+      </div>
+      <div class="tutorial-player" id="tutorial-player" aria-label="NPC同士によるルール説明" aria-live="polite">
+        <div class="tutorial-status">
+          <p><span id="tutorial-step-number">01</span> / <span id="tutorial-step-total">10</span></p>
+          <div class="tutorial-progress" id="tutorial-progress" aria-hidden="true"></div>
+          <span id="tutorial-phase">START</span>
+        </div>
+
+        <div class="tutorial-board" id="tutorial-board">
+          <div class="tutorial-resource tutorial-resource-enemy" data-tutorial-target="enemy-resource">
+            <span>相手</span><b>種 <em id="tutorial-enemy-seeds">3</em></b><b>DECK <em id="tutorial-enemy-deck">18</em></b>
+          </div>
+          <div class="tutorial-row tutorial-row-enemy">
+            <div class="tutorial-slot tutorial-slot-sub" data-tutorial-slot="enemy-sub"><small>サブアタッカー</small></div>
+            <div class="tutorial-slot tutorial-slot-main" data-tutorial-slot="enemy-main"><small>メインアタッカー</small></div>
+          </div>
+
+          <div class="tutorial-divider"><span>NPC</span><strong>VS</strong><span>NPC</span></div>
+
+          <div class="tutorial-row tutorial-row-player">
+            <div class="tutorial-slot tutorial-slot-main" data-tutorial-slot="player-main"><small>メインアタッカー</small></div>
+            <div class="tutorial-slot tutorial-slot-sub" data-tutorial-slot="player-sub"><small>サブアタッカー</small></div>
+          </div>
+          <div class="tutorial-resource tutorial-resource-player" data-tutorial-target="player-resource">
+            <span>自分</span><b>召喚コスト <em id="tutorial-cost">0</em></b><b>種 <em id="tutorial-player-seeds">3</em></b><b>DECK <em id="tutorial-player-deck">18</em></b>
+          </div>
+          <div class="tutorial-hand" id="tutorial-hand" data-tutorial-target="hand" aria-label="チュートリアルの手札"></div>
+          <div class="tutorial-actions-demo" data-tutorial-target="actions"><span>BATTLE</span><span>ターンエンド</span></div>
+        </div>
+
+        <div class="tutorial-caption">
+          <p class="tutorial-caption-label" id="tutorial-caption-label">最初の一手</p>
+          <p id="tutorial-caption-text">最初はコスト0のモンスターを、メインアタッカーとして必ず召喚します。</p>
+        </div>
+        <div class="tutorial-controls" aria-label="チュートリアル操作">
+          <button type="button" id="tutorial-prev">← 前へ</button>
+          <button type="button" id="tutorial-toggle" aria-pressed="false">一時停止</button>
+          <button type="button" id="tutorial-next">次へ →</button>
+        </div>
+      </div>
+      <div class="screen-actions">
+        <button class="slash-button slash-button-red" type="button" data-go="npc"><span>対戦相手を選ぶ</span><small>CHOOSE YOUR ENEMY</small></button>
+      </div>
+    </section>
+
+    <section class="screen selection-screen npc-screen" data-screen="npc" aria-labelledby="npc-heading" hidden>
+      <header class="screen-header">
+        <button class="icon-button" type="button" data-go="guide" aria-label="ゲーム説明へ戻る">←</button>
+        <p><span>01</span> ENEMY</p><span class="header-rule" aria-hidden="true"></span>
+      </header>
+      <div class="selection-heading">
+        <p class="eyebrow">CHOOSE YOUR ENEMY.</p><h2 id="npc-heading">対戦相手を選んでください</h2>
+      </div>
+      <div class="npc-grid">
+        <button class="npc-card" type="button" data-select-npc="senna">
+          <span class="portrait-frame"><img data-character-image="senna" alt="落窪千奈"><span class="portrait-fallback">PORTRAIT<br>PENDING</span><span class="card-number">01</span></span>
+          <span class="npc-meta"><small>HARD/BALANCE</small><strong>落窪 千奈</strong><em>おちくぼ せんな</em></span>
+        </button>
+        <button class="npc-card" type="button" data-select-npc="iori">
+          <span class="portrait-frame"><img data-character-image="iori" alt="夜鷹伊織"><span class="portrait-fallback">PORTRAIT<br>PENDING</span><span class="card-number">02</span></span>
+          <span class="npc-meta"><small>NORMAL/ATTACKER</small><strong>夜鷹 伊織</strong><em>よたか いおり</em></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="screen selection-screen deck-screen" data-screen="deck" aria-labelledby="deck-heading" hidden>
+      <header class="screen-header">
+        <button class="icon-button" type="button" data-go="npc" aria-label="対戦相手選択へ戻る">←</button>
+        <p><span>02</span> DECK</p><span class="header-rule" aria-hidden="true"></span>
+      </header>
+      <div class="selection-heading deck-heading">
+        <p class="eyebrow">SELECT YOUR STYLE.</p><h2 id="deck-heading">使用するデッキを選択してください。</h2><p>名称とカード内容は後からデータへ接続します。</p>
+      </div>
+      <div class="deck-grid">
+        <button class="deck-box deck-recovery" type="button" data-select-deck="recovery">
+          <span class="deck-index">01</span><span class="deck-image"><img src="../images/card/monster_card_illust/kyouboasukarakamasu.png" alt="回復型デッキ：教母アスカラカマス" draggable="false"><span class="portrait-fallback">IMAGE<br>PENDING</span></span>
+          <span class="deck-type">RECOVERY</span><strong>回復型</strong><small>持久と再生</small>
+        </button>
+        <button class="deck-box deck-assault" type="button" data-select-deck="assault">
+          <span class="deck-index">02</span><span class="deck-image"><img src="../images/card/monster_card_illust/astro.png" alt="攻撃型デッキ：アストロ公爵" draggable="false"><span class="portrait-fallback">IMAGE<br>PENDING</span></span>
+          <span class="deck-type">ASSAULT</span><strong>攻撃型</strong><small>速度と火力</small>
+        </button>
+        <button class="deck-box deck-balance" type="button" data-select-deck="balance">
+          <span class="deck-index">03</span><span class="deck-image"><img src="../images/card/monster_card_illust/leviathan.png" alt="均衡型デッキ：法皇リヴァイアサン" draggable="false"><span class="portrait-fallback">IMAGE<br>PENDING</span></span>
+          <span class="deck-type">BALANCE</span><strong>均衡型</strong><small>攻守の両立</small>
+        </button>
+      </div>
+      <button class="custom-deck-entry" id="custom-deck-entry" type="button" aria-label="自分でデッキを作る">
+        <img src="../images/card/char_illust/deck_shyoninn.png" alt="自分でデッキを作る" draggable="false">
+      </button>
+      <button class="card-catalog-link" id="all-card-list-button" type="button">カード一覧 <small>ALL CARDS</small></button>
+    </section>
+
+    <section class="screen catalog-screen deck-builder-screen" data-screen="deck-builder" aria-labelledby="deck-builder-heading" hidden>
+      <header class="screen-header catalog-header">
+        <button class="icon-button" type="button" data-go="deck" aria-label="デッキ選択へ戻る">←</button>
+        <p><span>BUILD</span> DECK</p><span class="header-rule" aria-hidden="true"></span>
+      </header>
+      <div class="catalog-heading deck-builder-heading">
+        <p class="eyebrow">BUILD YOUR OWN STYLE.</p>
+        <h2 id="deck-builder-heading">自分のデッキを作る</h2>
+        <p>カード本体をタップすると詳細を確認できます。<br>＋で追加、－で取り除けます。一部、プレイヤーが使用できないカードがあります。</p>
+      </div>
+      <div class="deck-builder-status" aria-live="polite">
+        <div class="deck-builder-total"><small>DECK</small><strong id="deck-builder-total">0 / 25</strong></div>
+        <div class="deck-builder-curve" id="deck-builder-curve">COST 0:0 / 1:0 / 2:0 / 3:0</div>
+        <p id="deck-builder-requirement">あと25枚｜コスト0を7枚以上入れてください。</p>
+      </div>
+      <div class="deck-builder-grid" id="deck-builder-grid" aria-label="デッキに入れるカード"></div>
+      <div class="deck-builder-actions">
+        <p>同名最大3枚。最強カードは1種類・1枚まで</p>
+        <button class="slash-button slash-button-red" id="use-custom-deck-button" type="button" disabled><span>このデッキを使用する</span><small>USE THIS DECK</small></button>
+      </div>
+    </section>
+
+    <section class="screen catalog-screen" data-screen="deck-detail" aria-labelledby="deck-detail-heading" hidden>
+      <header class="screen-header catalog-header">
+        <button class="icon-button" type="button" data-go="deck" aria-label="デッキ選択へ戻る">←</button>
+        <p><span>02.5</span> DECK LIST</p><span class="header-rule" aria-hidden="true"></span>
+      </header>
+      <div class="catalog-heading">
+        <p class="eyebrow">CARDS IN THIS DECK.</p>
+        <h2 id="deck-detail-heading">デッキ内容</h2>
+        <p id="deck-detail-summary">カードをタップすると詳細を確認できます。</p>
+      </div>
+      <div class="catalog-grid" id="deck-detail-grid" aria-label="選択中のデッキ内容"></div>
+    </section>
+
+    <section class="screen catalog-screen" data-screen="card-catalog" aria-labelledby="card-catalog-heading" hidden>
+      <header class="screen-header catalog-header">
+        <button class="icon-button" type="button" data-go="deck" aria-label="デッキ選択へ戻る">←</button>
+        <p><span>LIB</span> CARD LIST</p><span class="header-rule" aria-hidden="true"></span>
+      </header>
+      <div class="catalog-heading">
+        <p class="eyebrow">IMPLEMENTED CARD ARCHIVE.</p>
+        <h2 id="card-catalog-heading">カード一覧</h2>
+        <p>実装済みカードをNo順に表示しています。タップで拡大できます。</p>
+      </div>
+      <div class="catalog-grid" id="all-card-grid" aria-label="実装済みカード一覧"></div>
+    </section>
+
+    <section class="screen order-screen" data-screen="order" aria-labelledby="order-heading" hidden>
+      <div class="order-background" aria-hidden="true"><span class="order-stroke order-stroke-one"></span><span class="order-stroke order-stroke-two"></span><span class="order-giant">ORDER</span></div>
+      <header class="screen-header order-header">
+        <button class="icon-button" type="button" data-go="deck" aria-label="デッキ選択へ戻る">←</button>
+        <p><span>03</span> DRAW</p><span class="header-rule" aria-hidden="true"></span>
+      </header>
+      <div class="order-result">
+        <p class="eyebrow">THE ORDER HAS BEEN DECIDED.</p><h2 id="order-heading">あなたは</h2>
+        <div class="order-word" id="order-word" aria-live="assertive">—</div><p class="order-reading" id="order-reading">抽選中</p>
+      </div>
+      <dl class="match-summary">
+        <div><dt>ENEMY</dt><dd id="summary-npc">—</dd></div><div><dt>DECK</dt><dd id="summary-deck">—</dd></div>
+      </dl>
+      <div class="screen-actions order-actions">
+        <button class="slash-button slash-button-red" id="battle-start-button" type="button"><span>対戦を開始</span><small>ENTER THE FIELD</small></button>
+      </div>
+    </section>
+
+    <section class="screen battle-screen" data-screen="battle" aria-labelledby="battle-heading" hidden>
+      <h2 id="battle-heading" class="visually-hidden">対戦</h2>
+      <div class="battle-playmat" id="battle-playmat">
+        <header class="battle-topbar">
+          <div class="battle-opponent">
+            <span class="battle-opponent-face"><img id="battle-opponent-image" data-character-image="iori" alt="夜鷹伊織"></span>
+            <span><small id="battle-opponent-style">NORMAL / ATTACKER</small><strong id="battle-opponent-name">夜鷹 伊織</strong></span>
+          </div>
+          <div class="battle-turn-chip" id="battle-turn-chip"><small>TURN</small><strong>01</strong></div>
+          <button class="battle-menu-button" id="battle-menu-button" type="button" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+        </header>
+
+        <section class="field-side enemy-field" aria-label="伊織のフィールド">
+          <div class="field-resources enemy-resources">
+            <button class="grave-pile" type="button" data-open-grave="npc"><span>墓地</span><strong id="npc-grave-count">0</strong></button>
+            <div class="deck-pile"><span>DECK</span><strong id="npc-deck-count">25</strong></div>
+          </div>
+          <div class="enemy-hand" id="npc-hand" aria-label="伊織の手札"></div>
+          <div class="fighter-row enemy-fighters">
+            <div class="sub-slots" id="npc-sub-slots" aria-label="伊織のサブアタッカー"></div>
+            <div class="main-slot" id="npc-main-slot" aria-label="伊織のメインアタッカー"></div>
+          </div>
+          <div class="seed-zone enemy-seeds" id="npc-seeds" aria-label="伊織の種ゾーン"></div>
+        </section>
+
+        <div class="field-divider" aria-hidden="true"><span>VS</span></div>
+
+        <section class="field-side player-field" aria-label="あなたのフィールド">
+          <div class="seed-zone player-seeds" id="player-seeds" aria-label="あなたの種ゾーン"></div>
+          <div class="fighter-row player-fighters">
+            <div class="main-slot" id="player-main-slot" aria-label="あなたのメインアタッカー"></div>
+            <div class="sub-slots" id="player-sub-slots" aria-label="あなたのサブアタッカー"></div>
+          </div>
+          <div class="field-resources player-resources">
+            <button class="grave-pile" type="button" data-open-grave="player"><span>墓地</span><strong id="player-grave-count">0</strong></button>
+            <div class="deck-pile"><span>DECK</span><strong id="player-deck-count">25</strong></div>
+          </div>
+        </section>
+
+        <div class="player-hand-zone">
+          <div class="hand-label"><span>HAND</span><strong id="player-hand-count">0 / 5</strong></div>
+          <div class="player-hand" id="player-hand" aria-label="あなたの手札"></div>
+        </div>
+
+        <div class="battle-actions" id="battle-actions">
+          <button class="battle-action battle-action-primary" id="battle-button" type="button">BATTLE</button>
+          <button class="battle-action battle-action-secondary" id="turn-end-button" type="button">ターンエンド</button>
+        </div>
+
+        <div class="phase-banner" id="phase-banner" role="status" aria-live="assertive"><small>PHASE</small><strong>あなたのターン</strong></div>
+        <div class="battle-toast" id="battle-toast" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="game-entry-dialog" id="game-entry-dialog" aria-labelledby="game-entry-title">
+    <button class="dialog-x" id="game-entry-close" type="button" aria-label="確認画面を閉じる">×</button>
+    <p class="dialog-index" id="game-entry-index">SELECT / 01</p>
+    <div class="game-entry-logo"><img id="game-entry-logo" src="../images/card/title_logo/MoonCLEANING_logo_add.png" alt=""></div>
+    <h2 id="game-entry-title">お掃除を始めますか？</h2>
+    <div class="game-entry-actions">
+      <button class="game-entry-no" id="game-entry-no" type="button">NO</button>
+      <button class="game-entry-yes" id="game-entry-yes" type="button">YES</button>
+    </div>
+  </dialog>
+
+  <dialog class="credit-dialog" id="credit-dialog" aria-labelledby="credit-title">
+    <button class="dialog-x" id="credit-dialog-close" type="button" aria-label="クレジットを閉じる">×</button>
+    <p class="dialog-index">TITLE / CREDIT</p>
+    <h2 id="credit-title">CREDIT</h2>
+    <dl class="credit-list">
+      <div><dt>Production</dt><dd>HypeScript</dd></div>
+      <div><dt>Programming</dt><dd>狛井式（with ChatGPT 5.6）</dd></div>
+      <div><dt>Illustration</dt><dd>狛井式(HypeScript)<br>牛木ロム(HypeScript)<br>友人O氏(親愛なる隣人)</dd></div>
+      <div><dt>Font Assets <small>via BOOTH</small></dt><dd>異世明または異世ゴ　(敬称略)</dd></div>
+      <div><dt>Illustration Assets <small>via BOOTH</small></dt><dd>あ行。<br>皿もなか<br>破綻<br>REKu<br>tiwa　(敬称略)</dd></div>
+      <div><dt>Music</dt><dd>フリーBGM・音楽素材 MusMus<br>Springin' Sound Stock<br>ユーフルカ　(敬称略)</dd></div>
+    </dl>
+    <p class="credit-copyright">© 2026 HypeScript. All Rights Reserved.</p>
+  </dialog>
+
+  <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+    <button class="dialog-x" id="dialog-x" type="button" aria-label="確認画面を閉じる">×</button>
+    <p class="dialog-index" id="confirm-index">CONFIRM / 01</p>
+    <div class="dialog-portrait" id="confirm-portrait"><img data-character-image="senna" alt="選択内容の仮画像"><span class="portrait-fallback">IMAGE<br>PENDING</span></div>
+    <h2 id="confirm-title">この選択でよろしいですか？</h2><p id="confirm-detail"></p>
+    <div class="dialog-actions"><button class="dialog-no" id="dialog-no" type="button">NO</button><button class="dialog-deck-detail" id="dialog-deck-detail" type="button" hidden>デッキ内容を確認する</button><button class="dialog-yes" id="dialog-yes" type="button">YES</button></div>
+  </dialog>
+
+  <dialog class="battle-dialog" id="battle-dialog" aria-labelledby="battle-dialog-title">
+    <button class="dialog-x" id="battle-dialog-close" type="button" aria-label="閉じる">×</button>
+    <p class="dialog-index" id="battle-dialog-index">BATTLE / INFO</p>
+    <h2 id="battle-dialog-title">確認</h2>
+    <div class="battle-dialog-body" id="battle-dialog-body"></div>
+    <div class="battle-dialog-actions" id="battle-dialog-actions"></div>
+  </dialog>
+
+  <dialog class="ace-dialog" id="ace-dialog" aria-label="最強カード">
+    <div id="ace-dialog-body"></div>
+  </dialog>
+
+  <dialog class="card-art-dialog" id="card-art-dialog" aria-label="カードイラスト拡大表示">
+    <button class="dialog-x" id="card-art-dialog-close" type="button" aria-label="イラスト拡大表示を閉じる">×</button>
+    <img id="card-art-dialog-image" alt="">
+  </dialog>
+
+  <script src="audio.js?v=20260822-prod1"></script>
+  <script src="app.js?v=20260822-prod2"></script>
+  <script src="battle.js?v=20260822-prod1"></script>
+  <script src="tutorial.js?v=20260821-prod1"></script>
+</body>
+</html>
