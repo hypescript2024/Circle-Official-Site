@@ -2,7 +2,7 @@
 
 (() => {
   const CARD_LIBRARY = {
-    1: { id: 1, name: "アストロ公爵", cost: 3, hp: 4000, at: 2500, effect: "この効果は1ターンに1度だけ発動可能。体力を500減らし、攻撃力を500アップできる。", effectCode: "REDUCE_HP_BUFF_SELF", limit: "turn", accent: "#57203b", art: "monster_card_illust/astro.png" },
+    1: { id: 1, name: "アストロ公爵", cost: 3, hp: 4000, at: 2000, effect: "この効果は1ターンに1度だけ発動可能。体力を500減らし、攻撃力を500アップできる。", effectCode: "REDUCE_HP_BUFF_SELF", limit: "turn", accent: "#57203b", art: "monster_card_illust/astro.png" },
     2: { id: 2, name: "カリオストロ侯爵", cost: 2, hp: 2500, at: 1500, effect: "【逸話】500年熟成させた赤ワインを宝物庫に所有している。", effectCode: null, limit: null, accent: "#66252e", art: "monster_card_illust/kariosutro.png" },
     3: { id: 3, name: "ダルタニアン伯爵", cost: 1, hp: 1000, at: 500, effect: "【逸話】侯爵の宝物庫からワインを盗んでは、よく怒られている。", effectCode: null, limit: null, accent: "#4c5261", art: "monster_card_illust/darutanian.png" },
     4: { id: 4, name: "バッドボディ子爵", cost: 0, hp: 500, at: 200, effect: "この効果はバトル中に1度だけ発動可能。山札から1枚ドローできる。", effectCode: "DRAW_ONE", limit: "battle", accent: "#633e4c", art: "monster_card_illust/badbody.png" },

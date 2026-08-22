@@ -73,7 +73,6 @@ const state = {
   transitioning: false,
   orderTimer: 0,
   portalTimer: 0,
-  noticeTimer: 0,
   noticeFinished: false,
   playerGoesFirst: null,
   openingDeckDetail: false,
@@ -213,7 +212,6 @@ async function showScreen(name) {
   const current = screens.get(state.screen);
   const next = screens.get(name);
   if (state.screen === "notice" && name !== "notice") {
-    window.clearTimeout(state.noticeTimer);
     window.GameAudio?.stopSfx("notice");
   }
   current.classList.add("is-leaving");
@@ -257,7 +255,6 @@ function openEntryConfirmation(key) {
 async function finishNotice() {
   if (state.noticeFinished || state.screen !== "notice") return;
   state.noticeFinished = true;
-  window.clearTimeout(state.noticeTimer);
   window.GameAudio?.stopSfx("notice");
   await showScreen("title");
 }
@@ -265,7 +262,6 @@ async function finishNotice() {
 async function enterNotice() {
   state.noticeFinished = false;
   await showScreen("notice");
-  state.noticeTimer = window.setTimeout(finishNotice, 10000);
 }
 
 async function acceptEntryGame() {
@@ -274,6 +270,7 @@ async function acceptEntryGame() {
   if (!entry) return;
   if (!entry.href) {
     window.GameAudio?.unlock();
+    window.GameAudio?.primeBgm("opening");
     window.GameAudio?.playSfx("notice");
   }
   state.pendingEntryGame = null;
