@@ -270,7 +270,6 @@ async function acceptEntryGame() {
   if (!entry) return;
   if (!entry.href) {
     window.GameAudio?.unlock();
-    window.GameAudio?.primeBgm("opening");
     window.GameAudio?.playSfx("notice");
   }
   state.pendingEntryGame = null;
