@@ -28,7 +28,7 @@
     boy: { name: "つくしボーイ", cost: 1, hp: 500, at: 300, art: "../images/card/monster_card_illust/tukushi_boy.png" },
     rebel: { name: "反抗期のつくし", cost: 2, hp: 1500, at: 800, art: "../images/card/monster_card_illust/tukushi_hankoki.png" },
     dartagnan: { name: "ダルタニアン伯爵", cost: 1, hp: 1000, at: 500, art: "../images/card/monster_card_illust/darutanian.png" },
-    astro: { name: "アストロ公爵", cost: 3, hp: 4000, at: 2500, art: "../images/card/monster_card_illust/astro.png" },
+    astro: { name: "アストロ公爵", cost: 3, hp: 4000, at: 2000, art: "../images/card/monster_card_illust/astro.png" },
   };
 
   const baseHand = [cards.tsukushi, cards.boy, cards.rebel];

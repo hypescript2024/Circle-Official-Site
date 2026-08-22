@@ -47,6 +47,8 @@
   let desiredBgmKey = null;
   let currentBgmKey = null;
   let currentBgm = null;
+  let primedBgmKey = null;
+  let primedBgm = null;
   let ducked = false;
   let hiddenPaused = false;
   let audioContext = null;
@@ -63,6 +65,7 @@
     document.documentElement.dataset.audioDucked = String(ducked);
     document.documentElement.dataset.audioSfx = [...sfxByKey.keys()].join(",");
     document.documentElement.dataset.audioPaused = String(currentBgm?.paused ?? true);
+    document.documentElement.dataset.audioPrimed = primedBgmKey ?? "";
   }
 
   function dispatchChange() {
@@ -107,6 +110,36 @@
     return audio;
   }
 
+  function discardPrimedBgm() {
+    if (primedBgm) {
+      primedBgm.pause();
+      primedBgm.currentTime = 0;
+    }
+    primedBgm = null;
+    primedBgmKey = null;
+    publishState();
+  }
+
+  function primeBgm(key) {
+    if (!BGM[key] || !enabled || document.hidden) return null;
+    if (primedBgm && primedBgmKey === key) return primedBgm;
+    discardPrimedBgm();
+    const audio = makeAudio(BGM[key], true);
+    audio.preload = "auto";
+    audio.volume = 0;
+    primedBgm = audio;
+    primedBgmKey = key;
+    const promise = audio.play();
+    promise?.catch?.(() => {
+      if (primedBgm !== audio) return;
+      primedBgm = null;
+      primedBgmKey = null;
+      publishState();
+    });
+    publishState();
+    return audio;
+  }
+
   function playBgm(key, { restart = false } = {}) {
     if (!BGM[key]) return;
     desiredBgmKey = key;
@@ -122,7 +155,15 @@
     }
 
     const previous = currentBgm;
-    const next = makeAudio(BGM[key], true);
+    const usePrimed = primedBgm && primedBgmKey === key;
+    const next = usePrimed ? primedBgm : makeAudio(BGM[key], true);
+    if (usePrimed) {
+      primedBgm = null;
+      primedBgmKey = null;
+      next.currentTime = 0;
+    } else if (primedBgm) {
+      discardPrimedBgm();
+    }
     next.volume = 0;
     currentBgm = next;
     currentBgmKey = key;
@@ -221,6 +262,7 @@
       // Storage is optional. The current session still keeps the selected state.
     }
     if (!enabled) {
+      discardPrimedBgm();
       if (currentBgm) {
         cancelFade(currentBgm);
         currentBgm.pause();
@@ -320,6 +362,7 @@
 
   window.GameAudio = {
     unlock,
+    primeBgm,
     isEnabled: () => enabled,
     setEnabled,
     toggle,
@@ -336,11 +379,13 @@
       enabled,
       desiredBgmKey,
       currentBgmKey,
+      primedBgmKey,
       ducked,
       battleActive,
       battleNpc,
       specialOrder: [...specialOrder],
       currentPaused: currentBgm?.paused ?? true,
+      primedPaused: primedBgm?.paused ?? true,
       currentTime: currentBgm?.currentTime ?? 0,
       currentVolume: currentBgm?.volume ?? 0,
       activeSfx: Object.fromEntries([...sfxByKey].map(([key, instances]) => [key, instances.size])),
